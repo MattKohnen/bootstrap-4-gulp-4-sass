@@ -1,5 +1,5 @@
-# Bootstrap 4 boilerplate
-A [Bootstrap](https://getbootstrap.com/) v4.3.1 boiler plate with [Sass](http://sass-lang.com/), concatenation, minification, autoprefixer, [Browsersync](https://www.browsersync.io/), hot reloading and sourcemaps all runned by [Gulp](https://gulpjs.com/).
+# Bootstrap 4 + Gulp 4 + SASS Boilerplate
+A [Bootstrap](https://getbootstrap.com/) v4 boilerplate with [Sass](http://sass-lang.com/), concatenation, minification, [Browsersync](https://www.browsersync.io/), hot reloading and sourcemaps all managed by [Gulp](https://gulpjs.com/) v.4.
 
 ![bootstrap logo](https://user-images.githubusercontent.com/10498583/31125543-e2a88c2c-a848-11e7-87b0-d20ea38d41d0.jpg)
 ![sass logo](https://user-images.githubusercontent.com/10498583/31125541-e2a732e6-a848-11e7-959d-7d7b0c138124.jpg)
@@ -7,20 +7,18 @@ A [Bootstrap](https://getbootstrap.com/) v4.3.1 boiler plate with [Sass](http://
 ![browsersync logo](https://user-images.githubusercontent.com/10498583/31125540-e2a6eed0-a848-11e7-817a-69c5619f772a.jpg)
 
 ## Quick Start
-```
-# 1 Clone this repo
-git clone https://github.com/wapbamboogie/bootstrap-4-boilerplate.git
+### 1. Clone this Repo
+`git clone https://github.com/MattKohnen/bootstrap-4-gulp-4-sass`
 
-# 2 Navigate into the repo directory
-cd bootstrap-4-boilerplate
+### 2. Navigate into the Repo Directory
+`cd bootstrap-4-gulp-4-sass`
 
-# 3 Install all node packages
-npm install
+### 3. Install All Node Packages
+`npm install`
 
-# 4 Get started
-gulp serve - starts localhost server with browser-sync, watches HTML, Sass, JS with hot reloading
-gulp - minify CSS/JS and builds your app into the dist directory, ready for production
-```
+### 4. Get Started
+* `gulp` - starts localhost server with browser-sync, watches HTML, Sass, JS with hot reloading
+* `gulp --prod` - minify CSS/JS and builds your app into the dist directory, ready for production
 
 ## Requirements
 This project requires you have [nodejs](https://nodejs.org/en/) with [npm](https://www.npmjs.com/get-npm) installed.
@@ -30,47 +28,33 @@ This project requires you have a global installation of [gulp](http://gulpjs.com
 npm install -g gulp
 ```
 
-## Gulp commands
-**gulp serve**
-
-The gulp serve command starts a local Browsersync server that serves your files in the browser.
-It reloads the current page when changing HTML, PHP, Sass and JS files.
-The output of all Sass files go to main.css
-All JS files are concatenated into main.js
-You can access the development server with other devices on the same network. Go to the "External" address specified by Browsersync (see the terminal) in the web browser of your device.
-```
-gulp serve
-```
-
-**gulp (build)**
-
-The default gulp command is set to creating a "dist" directory with a production version of the project, ready to be deployed.
-It minifies and renames JS/CSS assets as well as cleaning the old "dist" directory. CSS is autoprefixed for the latest two browser versions.
+## Gulp Commands
 ```
 gulp
 ```
 
-**gulp concatScripts**
+The default `gulp` command:
+* Places the output of all Sass files into main.css and all JS files are concatenated into index.js
+* Starts a local Browsersync server that serves your files in the browser
+* Reloads the current page when changing HTML, Sass and JS files
 
-The gulp concatScripts command combines the specified JS resources into main.js
-You can add new JS files to this command on line 16 in gulpfile.js
-You might want to run concatScripts once separately after adding new JS files.
+Note that on *very rare* occasions changes might not reflect in the browser. 
+In that case, try restarting the *server*.
+
+You can access the development server with other devices on the same network. 
+Go to the "External" address specified by Browsersync (see the terminal) in the web browser of your device.
+
 ```
-gulp concatScripts
+gulp --prod
 ```
 
-## Overwriting Bootstrap sass variables
-You can overwrite specific bootstrap sass variables by uncommenting lines in assets/css/1-frameworks/bootstrap/bootstrap-user-variables.scss
+The default `gulp` command with the `--prod` flag passed in creates a production version of the CSS and JS, ready to be deployed.
+It cleans the old "dist" directory as well as minifies and renames CSS/JS assets.
 
-## PHP
-If you need a server with PHP support you can use the project with [MAMP Pro](https://www.mamp.info/en/mamp-pro/) or similar.
-* Create a new host in the hosts panel of MAMP Pro and choose the project folder as the document root.
-* Enable Symlinks settings in the "Extended" tab of the host configuration.
-* On line 82 in gulpfile.js change the browserSync.init function to the following:
-```
-browserSync.init({
-    proxy: "http://name-of-your-mamp-host:8888",
-    open: "external"
-});
-```
-* Start the MAMP services and run "gulp serve" as before.
+## Overwriting Bootstrap Sass Variables
+You can leverage Bootstrap Sass via the **src/styles/1-vendor-overrides/bootstrap-overrides** directory:
+* You can overwrite specific Bootstrap Sass variables via **_override-defaults.scss**
+* You can extend existing Bootstrap classes with new classes via **_extend-classes.scss**
+* You can use Bootstrap mixins via **_use-mixins.scss**
+
+**Look inside of each of the above 3 files for examples.**

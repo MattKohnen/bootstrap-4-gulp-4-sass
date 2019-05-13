@@ -45,3 +45,7 @@ node_modules/
 
 ### Distribution/build folder ###
 dist/
+
+
+# IDEs
+.idea
